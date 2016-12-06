@@ -1,0 +1,10 @@
+Project : MyNmap
+Developpers:
+	Victor-Emmanuel Fourneau @luriz on github
+	Yann Morin-Charbonneau @yannmc on github
+Langage : Python 3
+Module :: Scapy 3 @ https://github.com/phaethon/scapy
+Description:
+	Project for the network security class at Universite du quebec en outaouais.
+
+	Recode of nmap with the following scan : Syn / Connect / XMAS / Fin / Null / Idle
