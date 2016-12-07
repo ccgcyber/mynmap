@@ -4,23 +4,35 @@ from scapy.all import *
 import argparse
 import ipaddress
 
-
-bound = 65535
-ip = ' '
-
+Dbound = 21
+Ubound = 22
+ip = ''
+to = 5
 def idle(ip, zombie):
    print ("please enter a valid IP")
 
 def conn(ip):
    print ("please enter a valid IP")
 
-def loop(fl):
-   for port in range(1, bound):
-      pck = IP(dst = ip) / TCP(dport = port, flag = fl)
-      sr1(pck)
-    
-    
-def ipOK(s):
+def connect()
+   for port in range(Dbound, Ubound):
+      ans = sr1(IP(dst=ip)/TCP(dport=port,flags="S"), timeout=to,verbose=True)
+      if str(ans) == "None":
+         print("Port : " + port + " FILTERED " + prot(port))
+      else if str(ans[TCP].flags) == "SA":
+         print("Port : " + port + " OPEN " + prot(port))
+         sr1(IP(dst=ip)/TCP(dport=port,flags="RA"), timeout=to, verbose=False)
+   
+def SYN():
+   for port in range(Dbound, Ubound):
+      ans = sr1(IP(dst=ip)/TCP(dport=port,flags="s"), timeout=to,verbose=True)
+      if str(ans) == "None":
+         print("Port : " + port + " FILTERED " + prot(port))
+      else if str(ans[TCP].flags) == "SA":
+         print("Port : " + port + " OPEN " + prot(port))
+         sr1(IP(dst=ip)/TCP(dport=port,flags="R"), timeout=to, verbose=False)
+
+         def ipOK(s):
     try:
         ip = ipaddress.ip_address(s)
     except ValueError:
@@ -39,27 +51,28 @@ def main():
     args = parser.parse_args()
     
     if ipOK(args.ip):
-        ip = args.ip
+       global ip
+       ip = args.ip
     else:
         print ("please enter a valid IP")
         sys.exit()
         
     if args.conn:
-        conn(ip)
-    elif args.idle:
-        idle(ip, args.idle)
+        conn() #handshake
     elif args.xmas:
-        if ipOK(args.xmas):
-            loop(ip, "FPU")
+       xmas() # "FPU"
+    elif args.idle:
+        if ipOK(args.idle):
+           idle(args.idle)
         else:
             print ("please enter a valid IP")
             sys.exit()
     elif args.fin:
-        loop("F")
+        fin()#"F"
     elif args.null:
-        loop("")
+        null()
     else:
-        loop("S")
+        syn() # "S"
 
 if __name__ == "__main__":
     main()
