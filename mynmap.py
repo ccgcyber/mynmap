@@ -23,7 +23,7 @@ SA = 18
 
 def getZombieID(zombie):
    for port in range(1, 80):
-      zpck = sr1(IP(dst=zombie)/TCP(dport=80,flags="S"), timeout=2)
+      zpck = sr1(IP(dst=zombie)/TCP(dport=port,flags="S"), timeout=2)
       if str(type(zpck)) == "<class 'NoneType'>":
          id = -1
       else: 
