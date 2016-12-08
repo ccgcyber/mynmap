@@ -61,7 +61,6 @@ def conn():
       elif ans[TCP].flags == SA:
          print(str(port) + "\t OPEN \t" + protocoleMapping(port))
          sr1(IP(dst=ip)/TCP(dport=port,flags="RA"), timeout=time_out)
-         sr1(IP(dst=ip)/TCP(dport=port,flags="R"), timeout=time_out)
          
 def syn():
    for port in range(Dbound, Ubound):
