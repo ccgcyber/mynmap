@@ -47,7 +47,7 @@ def protocoleMapping(port):
 def genScan(flag):
    for port in range(Dbound, Ubound):
       ans = sr1(IP(dst=ip)/TCP(dport=port,flags=flag), timeout=time_out)
-      if str(type(ans)) == "<type 'NoneType'>":
+      if str(type(ans)) == "<class 'NoneType'>":
          print(str(port) + "\t OPEN \t" + protocoleMapping(port))
       elif ans[ICMP].type ==3 and ans[ICMP].code in [1,2,3,9,10,13]:
          print(str(port) + "\t FILTERED \t" + protocoleMapping(port))
@@ -55,7 +55,7 @@ def genScan(flag):
 def conn():
    for port in range(Dbound, Ubound):
       ans = sr1(IP(dst=ip)/TCP(dport=port,flags="S"), timeout=time_out)
-      if str(type(ans)) == "<type 'NoneType'>":
+      if str(type(ans)) == "<class 'NoneType'>":
          print(str(port) + "\t FILTERED \t" + protocoleMapping(port))
       elif ans[TCP].flags == SA:
          print(str(port) + "\t OPEN \t" + protocoleMapping(port))
@@ -65,7 +65,7 @@ def conn():
 def syn():
    for port in range(Dbound, Ubound):
       ans = sr1(IP(dst=ip)/TCP(dport=port,flags="S"), timeout=time_out)
-      if str(type(ans)) == "<type 'NoneType'>":
+      if str(type(ans)) == "<class 'NoneType'>":
          print(str(port) + "\t FILTERED \t" + protocoleMapping(port))
       elif ans[TCP].flags == SA:
          print(str(port) + "\t OPEN \t" + protocoleMapping(port))
