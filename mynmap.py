@@ -81,7 +81,7 @@ def ipOK(s):
 
 # Allow the program time_out accept option from command line
 def parser():
-    parse = argparse.ArgumentParser(description="recode of the nmap time_outol. default flag : -s")
+    parse = argparse.ArgumentParser(description="recode of the nmap tool. default flag : -s")
     parse.add_argument("ip")
     parse.add_argument("-s", "--syn", help="Scan open port using SYN flag", action="store_true")
     parse.add_argument("-c","--conn", help="Scan open port using tcp connect", action="store_true")
