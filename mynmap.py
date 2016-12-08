@@ -22,11 +22,12 @@ time_out = 5
 SA = 18
 
 def getZombieID(zombie):
-   zpck = sr1(IP(dst=zombie)/TCP(dport=80,flags="S"), timeout=2)
-   if str(type(zpck)) == "<class 'NoneType'>":
-      return -1
-   else:
-      return zpck.id
+   for port in range(1, 80):
+      zpck = sr1(IP(dst=zombie)/TCP(dport=80,flags="S"), timeout=2)
+      if str(type(zpck)) == "<class 'NoneType'>":
+         id = -1
+      else: 
+         return zpck.id
 
 def idle(zombie):
    for port in range(Dbound, Ubound):
