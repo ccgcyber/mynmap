@@ -12,11 +12,11 @@ def parser():
     parse.add_argument("-x", "--xmas", help="Scan open port using FIN/URG/Push flag",action="store_true")
     parse.add_argument("-f", "--fin", help="Scan open port using FIN flag", action="store_true")
     parse.add_argument("-n","--null",help="Scan open port using NULL flag",action="store_true")
-    parse.add_argument("-i","--idle", help="Scan open port using zombie")
+    parse.add_argument("-i","--idle", help="Scan open port using a zombie")
     return parse.parse_args()
 
 def showResult(result, counter):
-   print("PORT\t STATUS \tSERVICE")
+    print("PORT\t STATUS \tSERVICE")
     for port in result:
         if "FILTERED" in port and counter >= filterLimit:
             pass
