@@ -5,6 +5,8 @@ from scapy.all import *
 from scapy.all import conf
 net = Networking()
 conf.verb = 0
+
+# NOTSET |DEBUG | INFO | WARNING | ERROR | CRITICAL
 logging.getLogger("scapy.runtime").setLevel(logging.ERROR)
 
 Dbound = 75 # first port scanned minimum : 1
